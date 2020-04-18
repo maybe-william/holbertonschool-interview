@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 def canUnlockAll(boxes):
     """This sees if boxes can be unlocked given box 0 unlocked"""
+    return False
     unlocked = []
     for i in range(0, len(boxes)):
         unlocked.append(False)
