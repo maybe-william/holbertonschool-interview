@@ -14,4 +14,4 @@ def canUnlockAll(boxes):
                 unlocked[k] = True
                 todo.append(k)
 
-    return all(unlocked)
+    return False
