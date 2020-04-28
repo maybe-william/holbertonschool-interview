@@ -23,6 +23,16 @@ listint_t *insert_node(listint_t **head, int number)
 		curr = curr->next;
 	}
 
+	if ((*head)->n > number)
+	{
+		curr = NULL;
+		add_nodeint_end(&curr, (const int) number);
+		if (!curr)
+			return (NULL);
+		curr->next = *head;
+		*head = curr;
+		return (*head);
+	}
 	after = curr->next;
 	curr->next = NULL;
 	add_nodeint_end(&curr, (const int) number);
