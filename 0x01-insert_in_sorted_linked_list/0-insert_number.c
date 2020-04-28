@@ -14,10 +14,10 @@ listint_t *insert_node(listint_t **head, int number)
 	if (!head)
 		return (NULL);
 	if (!*head)
-		return (add_nodeint_end(head, (const int) n));
+		return (add_nodeint_end(head, (const int) number));
 
 	curr = *head;
-	while (curr->next && curr->next->n <= n)
+	while (curr->next && curr->next->n <= number)
 	{
 		curr = curr->next;
 	}
