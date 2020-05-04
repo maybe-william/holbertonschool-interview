@@ -112,7 +112,7 @@ heap_t *heap_insert(heap_t **root, int value)
 {
 	binary_tree_t *x;
 	binary_tree_t *to_insert;
-	binary_tree_t *temp = *root;
+	binary_tree_t *temp;
 	int h = 0;
 
 	if (!root)
@@ -125,6 +125,7 @@ heap_t *heap_insert(heap_t **root, int value)
 		*root = x;
 		return (x);
 	}
+	temp = *root;
 	while (temp->left)
 	{
 		temp = temp->left;
