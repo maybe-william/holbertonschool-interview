@@ -33,52 +33,65 @@ binary_tree_t *find_insert_node(binary_tree_t *root, int height, int maxheight)
 
 
 /**
+ * change_attributes - swaps all three attributes on two nodes.
+ * @node1: the first node
+ * @node2: the second node
+ */
+void change_attributes(binary_tree_t *node1, binary_tree_t *node2)
+{
+	binary_tree_t *temp;
+
+	temp = node2->parent;
+	node2->parent = node1->parent;
+	node1->parent = temp;
+
+	temp = node2->left;
+	node2->left = node1->left;
+	node1->left = temp;
+
+	temp = node2->right;
+	node2->right = node1->right;
+	node1->right = temp;
+}
+
+
+/**
  * change - change an item with its parent
  * @item: the item
  * @parent: the parent
  */
 void change(binary_tree_t *item, binary_tree_t *parent)
 {
-	binary_tree_t *grandpapi = parent->parent;
-	binary_tree_t *brother = NULL;
-	binary_tree_t *leftson = item->left;
-	binary_tree_t *rightson = item->right;
-	int l_or_r, l_or_r_dad = 0;
-
-	if (item == parent->left)
-	{
-		brother = parent->right;
-		l_or_r = 1;
-	}
-	else
-	{
-		brother = parent->left;
-		l_or_r = -1;
-	}
-	l_or_r_dad = (grandpapi && (parent == grandpapi->left)) ? -1 : 1;
-	if (l_or_r > 0)
-	{
-		item->right = brother;
-		item->left = parent;
-	}
-	else
-	{
-		item->left = brother;
-		item->right = parent;
-	}
-	if (brother)
-		brother->parent = item;
-	item->parent = grandpapi;
+	change_attributes(item, parent);
 	parent->parent = item;
-	parent->left = leftson;
-	parent->right = rightson;
-	if (grandpapi)
+	if (item->left == item)
 	{
-		if (l_or_r_dad > 0)
-			grandpapi->right = item;
-		else
-			grandpapi->left = item;
+		item->left = parent;
+		if (item->right)
+			item->right->parent = item;
 	}
+	if (item->right == item)
+	{
+		item->right = parent;
+		if (item->left)
+			item->left->parent = item;
+	}
+
+	if (item->parent)
+	{
+		if (item->parent->left == parent)
+			item->parent->left = item;
+		if (item->parent->right == parent)
+			item->parent->right = item;
+	}
+
+	if (parent->left)
+		if (parent->left->parent == item)
+			parent->left->parent = parent;
+
+	if (parent->right)
+		if (parent->right->parent == item)
+			parent->right->parent = parent;
 }
 
 
