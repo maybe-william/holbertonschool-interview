@@ -11,8 +11,9 @@ def getFactor(n):
 
 def minOperations(n):
     """Find the min operations to get from 1 to n using copy and paste"""
-    if type(n) == int and n > 1:
-        return minOpRec(n, 0)
+    if type(n) == int or (type(n) == float and n.is_integer()):
+        if n > 1:
+            return minOpRec(n, 0)
     return 0
 
 
