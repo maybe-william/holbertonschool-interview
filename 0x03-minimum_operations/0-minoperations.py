@@ -4,6 +4,8 @@
 
 def getFactor(n):
     """Get the largest factor of n"""
+    if n == 1:
+        return 1
     for x in range(n-1, 0, -1):
         if n % x == 0:
             return x
