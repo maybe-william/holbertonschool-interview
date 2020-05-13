@@ -2,12 +2,23 @@
 """This module is for the minimum operations problem"""
 
 
+import math
+
+
 def getFactor(n):
-    """Get the largest factor of n"""
-    for x in range(n-1, 0, -1):
+    """Get the smallest factor of n"""
+    for x in range(2, math.ceil(math.sqrt(n + 1))):
         if n % x == 0:
             return x
-    return 1
+    return 0
+
+
+def minOpRec(n, acc):
+    """Recursive solution to the minOp problem"""
+    factor = getFactor(n)
+    if factor == 0:
+        return acc + n
+    return minOpRec((n // factor), acc + factor)
 
 
 def minOperations(n):
@@ -16,11 +27,3 @@ def minOperations(n):
         return 0
 
     return minOpRec(n, 0)
-
-
-def minOpRec(n, acc):
-    """Recursive solution to the minOp problem"""
-    factor = getFactor(n)
-    if factor == 1:
-        return acc + n
-    return minOpRec(factor, acc + (n // factor))
