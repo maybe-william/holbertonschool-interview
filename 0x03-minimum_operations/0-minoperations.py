@@ -21,6 +21,8 @@ def minOperations(n):
 
 def minOpRec(n, acc):
     """Recursive solution to the minOp problem"""
+    if n == 1:
+        return 0
     factor = getFactor(n)
     if factor == 1:
         return acc + n
