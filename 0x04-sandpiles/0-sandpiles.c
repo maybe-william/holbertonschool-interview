@@ -1,5 +1,27 @@
 #include "sandpiles.h"
 
+/**
+ * my_print - print the grid with an = above it
+ * @grid: the grid to print
+ */
+void my_print(int grid[3][3])
+{
+	int i;
+	int j;
+
+	printf("=\n");
+	for (i = 0; i < 3; i++)
+	{
+		for (j = 0; j < 3; j++)
+		{
+			printf("%d", grid[i][j]);
+			if (j == 2)
+				printf("\n");
+			else
+				printf(" ");
+		}
+	}
+}
 
 /**
  * iterate - iterate over the pile p doing the function f for each element
@@ -16,7 +38,7 @@ void iterate(iter_func f, int p[3][3], int a[3][3], int b[3][3], int flag)
 
 	for (i = 0; i < 3; i++)
 	{
-		for (j = 0; j < 3, j++)
+		for (j = 0; j < 3; j++)
 		{
 			f(i, j, p[i][j], a, b, flag);
 		}
@@ -102,7 +124,6 @@ void get_do_topples(int x, int y, int val, int a[3][3], int b[3][3], int flag)
 	}
 }
 
-
 /**
  * sandpiles_sum - function description
  * @grid1: the starting and ending grid
@@ -124,17 +145,17 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 	{
 		/* get the topples */
 		iterate(get_do_topples, grid1, NULL, topple, 1);
-		/* do the topples */
-		iterate(get_do_topples, grid1, grid1, topple, 2);
 		/* set not done to 0 */
 		not_done[0][0] = 0;
 		/* check if done */
 		iterate(add_check_zero, topple, NULL, not_done, 2);
-		/* zero the topple grid */
-		iterate(add_check_zero, topple, NULL, topple, 3);
 		/* if not done */
 		if (not_done[0][0])
 			/* print grid */
-			printf("Not Done");
+			my_print(grid1);
+		/* do the topples */
+		iterate(get_do_topples, grid1, grid1, topple, 2);
+		/* zero the topple grid */
+		iterate(add_check_zero, topple, NULL, topple, 3);
 	}
 }

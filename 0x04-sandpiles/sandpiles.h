@@ -1,5 +1,8 @@
 #ifndef _HOLBERTON_H_
 #define _HOLBERTON_H_
+#include <stdlib.h>
+#include <stddef.h>
+#include <stdio.h>
 
 typedef void (*iter_func)(int, int, int, int[3][3], int[3][3], int);
 
