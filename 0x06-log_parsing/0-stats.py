@@ -24,6 +24,8 @@ def print_stuff():
 
 
 for line in sys.stdin:
+    if line == "":
+        continue
     valid_codes = "(200|301|400|401|403|404|405|500)"
     patt = re.compile("^.*\s+" + valid_codes + "\s+(\d+)\s*$")
     x = patt.match(line)
