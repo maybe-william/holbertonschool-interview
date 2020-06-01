@@ -9,13 +9,15 @@ if __name__ == "__main__":
     total_size = 0
     code_nums = {}
     line_num = 0
+    print('File size: 0')
 
     def print_stuff():
         """print file size and status code frequency"""
-        print('File size: {}'.format(total_size))
-        for i in sorted(code_nums.keys()):
-            j = code_nums.get(i)
-            print('{}: {}'.format(i, j))
+        if (file_size > 0):
+            print('File size: {}'.format(total_size))
+            for i in sorted(code_nums.keys()):
+                j = code_nums.get(i)
+                print('{}: {}'.format(i, j))
 
     try:
         for line in sys.stdin:
