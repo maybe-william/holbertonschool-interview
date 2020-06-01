@@ -19,9 +19,6 @@ if __name__ == "__main__":
 
     try:
         for line in sys.stdin:
-            if line_num == 10:
-                line_num = 0
-                print_stuff()
             valid_codes = "(200|301|400|401|403|404|405|500)"
             patt = re.compile(".*\".*\"\s+" + valid_codes + "\s+(.*)")
             x = patt.match(line)
@@ -31,6 +28,9 @@ if __name__ == "__main__":
                 total_size = total_size + int(size)
                 code_nums[code] = code_nums.get(code, 0) + 1
             line_num = line_num + 1
+            if line_num == 10:
+                line_num = 0
+                print_stuff()
     except KeyboardInterrupt:
         print_stuff()
         raise
