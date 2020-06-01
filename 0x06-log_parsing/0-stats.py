@@ -20,7 +20,7 @@ if __name__ == "__main__":
     try:
         for line in sys.stdin:
             valid_codes = "(200|301|400|401|403|404|405|500)"
-            patt = re.compile(".*\".*\"\s+" + valid_codes + "\s+(.*)")
+            patt = re.compile("^.*\s+" + valid_codes + "\s+(\d+)\s*$")
             x = patt.match(line)
             if (x):
                 code = x[1]
