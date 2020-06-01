@@ -22,7 +22,8 @@ if __name__ == "__main__":
             if line_num == 10:
                 line_num = 0
                 print_stuff()
-            patt = re.compile(".*\".*\"\s+(.*)\s+(.*)")
+            valid_codes = "(200|301|400|401|403|404|405|500)"
+            patt = re.compile(".*\".*\"\s+" + valid_codes + "\s+(.*)")
             x = patt.match(line)
             code = x[1]
             size = x[2]
@@ -32,3 +33,4 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         print_stuff()
         raise
+    print_stuff()
