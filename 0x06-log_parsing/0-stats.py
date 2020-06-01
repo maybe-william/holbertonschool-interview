@@ -8,7 +8,7 @@ import sys
 if __name__ == "__main__":
     total_size = 0
     code_nums = {}
-    line_num = 1
+    line_num = 0
 
     def sig_handler(sig, frame):
         """catch the interrupt signal, print, and exit"""
@@ -23,12 +23,12 @@ if __name__ == "__main__":
             print('{}: {}'.format(i, j))
 
     signal.signal(signal.SIGINT, sig_handler)
-    while (True):
+    for line in sys.stdin:
         if line_num == 10:
-            line_num = 1
+            line_num = 0
             print_stuff()
         patt = re.compile(".*\".*\"\s+(.*)\s+(.*)")
-        x = patt.match(input())
+        x = patt.match(line)
         code = x[1]
         size = x[2]
         total_size = total_size + int(size)
