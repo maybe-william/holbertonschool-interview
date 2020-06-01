@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """This file reads stdin line by line and computes metrics"""
+import sys
 import re
 import signal
-import sys
 
 
 if __name__ == "__main__":
@@ -12,10 +12,11 @@ if __name__ == "__main__":
 
     def print_stuff():
         """print file size and status code frequency"""
-        print('File size: {}'.format(total_size))
-        for i in sorted(code_nums.keys()):
-            j = code_nums.get(i)
-            print('{}: {}'.format(i, j))
+        if (total_size > 0):
+            print('File size: {}'.format(total_size))
+            for i in sorted(code_nums.keys()):
+                j = code_nums.get(i)
+                print('{}: {}'.format(i, j))
 
     try:
         for line in sys.stdin:
