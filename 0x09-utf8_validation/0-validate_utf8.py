@@ -11,10 +11,8 @@ def my_and(num, ones, zeros):
 
 def verify_byte(byte, style=1):
     """Verifies the byte, returns true if valid, false if not valid"""
-    if byte > 255 or byte < 0:
-        return False
     if style == 1:
-        return byte < 128
+        return (byte & 128) != 128
     elif style == 2:
         return my_and(byte, 192, 32)
     elif style == 3:
