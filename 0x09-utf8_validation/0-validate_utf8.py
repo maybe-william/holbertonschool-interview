@@ -12,7 +12,6 @@ def verify_byte(byte, style=1):
     """Verifies the byte, returns true if valid, false if not valid"""
   if byte > 255 or byte < 0:
       return False
-  # 110 -> 192, 1110 -> 224, 11110 -> 240
   if style == 1:
       return byte < 128
   elif style == 2:
