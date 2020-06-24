@@ -47,7 +47,6 @@ def validUTF8(data):
                 numOfFiller = 3
             else:
                 return False
-
     if numOfFiller > 0:
         return False
     return True
