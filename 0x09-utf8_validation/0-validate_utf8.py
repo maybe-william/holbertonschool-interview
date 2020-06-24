@@ -49,4 +49,3 @@ def validUTF8(data):
     if numOfFiller > 0:
         return False
     return True
-
