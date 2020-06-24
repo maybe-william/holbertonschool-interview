@@ -28,7 +28,7 @@ def verify_byte(byte, style=1):
 def validUTF8(data):
     """Given an array of bytes, determine whether or not it's valid UTF8"""
     if len(data) == 0:
-        return True
+        return False
     numOfFiller = 0
     for byte in data:
         if numOfFiller > 0:
