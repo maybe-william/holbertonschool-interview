@@ -110,13 +110,13 @@ int slide_merge_left(int *line, size_t size)
 int slide_line(int *line, size_t size, int direction)
 {
 
-return (0);
 	if (direction != SLIDE_LEFT && direction != SLIDE_RIGHT)
 		return (0);
 	if (!line || !(*line))
 		return (0);
 	if (size == 1)
 		return (1);
+return (0);
 
 	if (direction == SLIDE_LEFT)
 		return (slide_merge_left(line, size));
