@@ -11,54 +11,54 @@
  */
 char get_char(int x, int y, int level)
 {
-    int size, mod, x_third, y_third;
+	int size, mod, x_third, y_third;
 
 
-    if (level == 1)
-    {
-        if (x == 1 && y == 1)
-            return ' ';
-        else
-            return '#';
-    }
+	if (level == 1)
+	{
+		if (x == 1 && y == 1)
+			return (' ');
+		else
+			return ('#');
+	}
 
-    size = (int)pow(3, level);
-    mod = size/3;
+	size = (int)pow(3, level);
+	mod = size / 3;
 
-    x_third = x/mod;
-    y_third = y/mod;
-    if (x_third == 1 && y_third == 1)
-        return ' ';
-    else
-        return (get_char(x % mod, y % mod, level - 1));
+	x_third = x / mod;
+	y_third = y / mod;
+	if (x_third == 1 && y_third == 1)
+		return (' ');
+	else
+		return (get_char(x % mod, y % mod, level - 1));
 
 }
 
 /**
- * menger - function description
- * @level: parameter description
+ * menger - draw a menger square at a certain level
+ * @level: the level to draw the square for
  */
 void menger(int level)
 {
-    int size, i, j;
+	int size, i, j;
 
-    if (level < 0)
-        return;
-    if (level == 0)
-    {
-        putchar('#');
-        putchar('\n');
-        return;
-    }
+	if (level < 0)
+		return;
+	if (level == 0)
+	{
+		putchar('#');
+		putchar('\n');
+		return;
+	}
 
-    size = (int)pow(3,level);
+	size = (int)pow(3, level);
 
-    for (i = 0; i < size; i++)
-    {
-        for (j = 0; j < size; j++)
-        {
-            putchar(get_char(j, i, level));
-        }
-        putchar('\n');
-    }
+	for (i = 0; i < size; i++)
+	{
+		for (j = 0; j < size; j++)
+		{
+			putchar(get_char(j, i, level));
+		}
+		putchar('\n');
+	}
 }
