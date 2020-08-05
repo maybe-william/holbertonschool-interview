@@ -8,11 +8,11 @@
  * @mode: I need to have 4 functions total, so this is 2 combined.
  * Return: I apologize profusely for the damage this will do to your eyes.
  */
-avl_t *node_frame(avl_t *par, int *array, long ind, int mode)
+avl_t *node_frame(avl_t *par, int *array, unsigned long ind, int mode)
 {
 	avl_t *new;
 	avl_t *frame = par;
-	long newind = ind;
+	unsigned long newind = ind;
 
 	if (mode == 0)
 	{
@@ -27,13 +27,13 @@ avl_t *node_frame(avl_t *par, int *array, long ind, int mode)
 	}
 
 	if (frame->left)
-		newind = (long)node_frame(frame->left, array, newind, 1);
+		newind = (unsigned long)node_frame(frame->left, array, newind, 1);
 
 	frame->n = array[newind];
 	newind++;
 
 	if (frame->right)
-		newind = (long)node_frame(frame->right, array, newind, 1);
+		newind = (unsigned long)node_frame(frame->right, array, newind, 1);
 
 	return ((avl_t *)newind);
 }
