@@ -1,9 +1,9 @@
 #include "binary_trees.h"
 
 /**
- * add_node - function description
- * @par: parameter description
- * Return: return description
+ * add_node - initialize a node and connect it to the parent
+ * @par: the parent node
+ * Return: the node, or NULL if failed to create
  */
 avl_t *add_node(avl_t *par)
 {
@@ -20,12 +20,12 @@ avl_t *add_node(avl_t *par)
 }
 
 /**
- * build_frame - function description
- * @root: parameter description
- * @levels: parameter description
- * @current_level: parameter description
- * @extras: parameter description
- * Return: return description
+ * build_frame - build the empty tree
+ * @root: the root node
+ * @levels: the number of full levels
+ * @current_level: the current level
+ * @extras: how many extra nodes there are after a full and complete tree
+ * Return: the empty tree structure, or NULL if building failed
  */
 avl_t *build_frame(avl_t *root, int levels, int current_level, int *extras)
 {
@@ -72,11 +72,11 @@ avl_t *build_frame(avl_t *root, int levels, int current_level, int *extras)
 }
 
 /**
- * fill_frame - function description
- * @frame: parameter description
- * @array: parameter description
- * @ind: parameter description
- * Return: return description
+ * fill_frame - fill the empty tree structure with inorder traversal
+ * @frame: the empty tree structure
+ * @array: the array
+ * @ind: the current index in the array
+ * Return: the next index in the array for the next node
  */
 int fill_frame(avl_t *frame, int *array, int ind)
 {
@@ -96,10 +96,10 @@ int fill_frame(avl_t *frame, int *array, int ind)
 
 
 /**
- * sorted_array_to_avl - function description
- * @array: parameter description
- * @size: parameter description
- * Return: return description
+ * sorted_array_to_avl - turn a sorted array into a balanced bst
+ * @array: the sorted array
+ * @size: the size of the array
+ * Return: the new avl, or NULL if failed
  */
 avl_t *sorted_array_to_avl(int *array, size_t size)
 {
@@ -107,7 +107,7 @@ avl_t *sorted_array_to_avl(int *array, size_t size)
 	avl_t *succ = NULL;
 	int levels = 0;
 	int extras = 0;
-	int *pow2 = {2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192}
+	int pow2[] = {2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192};
 
 	if (size <= 0)
 		return (NULL);
@@ -116,7 +116,7 @@ avl_t *sorted_array_to_avl(int *array, size_t size)
 	if (tree == NULL)
 		return (NULL);
 
-	while ((pow2[levels] - 1) <= size)
+	while ((pow2[levels] - 1) <= (int)size)
 		levels++;
 	levels--;
 

@@ -1,6 +1,8 @@
 #ifndef _HOLBERTON_H_
 #define _HOLBERTON_H_
 
+#include <stdlib.h>
+
 /**
  * struct binary_tree_s - Binary tree node
  *
