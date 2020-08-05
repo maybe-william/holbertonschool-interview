@@ -54,13 +54,13 @@ avl_t *build_frame(avl_t *root, int levels, int current_level, int *extras)
 	{
 		if ((*extras) > 0)
 		{
-			root->right = node_frame(root, 0, 0, 0);
+			root->right = node_frame(root, NULL, 0, 0);
 			*extras = (*extras) - 1;
 			if (root->right == NULL)
 				return (NULL);
 			if ((*extras) > 0)
 			{
-				root->left = node_frame(root, 0, 0, 0);
+				root->left = node_frame(root, NULL, 0, 0);
 				*extras = (*extras) - 1;
 				if (root->left == NULL)
 					return (NULL);
@@ -71,20 +71,20 @@ avl_t *build_frame(avl_t *root, int levels, int current_level, int *extras)
 	}
 	else
 	{
-		root->right = node_frame(root, 0, 0, 0);
+		root->right = node_frame(root, NULL, 0, 0);
 		if (root->right == NULL)
 			return (NULL);
 		res = build_frame(root->right, levels, current_level + 1, extras);
 		if (res == NULL)
 			return (NULL);
-		root->left = node_frame(root, 0, 0, 0);
+		root->left = node_frame(root, NULL, 0, 0);
 		if (root->left == NULL)
 			return (NULL);
 		res = build_frame(root->left, levels, current_level + 1, extras);
 		if (res == NULL)
 			return (NULL);
 	}
-	return (NULL);
+	return (root);
 }
 
 
@@ -106,7 +106,7 @@ avl_t *sorted_array_to_avl(int *array, size_t size)
 	if (size <= 0)
 		return (NULL);
 
-	tree = node_frame(NULL, 0, 0, 0);
+	tree = node_frame(NULL, NULL, 0, 0);
 	if (tree == NULL)
 		return (NULL);
 
