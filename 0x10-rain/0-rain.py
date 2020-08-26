@@ -8,6 +8,10 @@ def rain(walls):
     if type(walls) is not list or len(walls) <= 2:
         return 0
 
+    for x in walls:
+        if x < 0:
+            return 0
+
     total = 0
     left_wall = 0
     right_wall = 1
@@ -21,5 +25,3 @@ def rain(walls):
         right_wall = right_wall + 1
 
     return total
-
-
