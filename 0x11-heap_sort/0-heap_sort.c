@@ -7,10 +7,9 @@
  */
 void heap_sort(int *array, size_t size)
 {
-    int *x = array;
-    size_t s = size;
+	int *x = array;
+	size_t s = size;
 
-    x++;
-    s++;
-    return;
+	x++;
+	s++;
 }
