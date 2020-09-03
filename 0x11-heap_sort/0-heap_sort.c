@@ -1,4 +1,4 @@
-#include "holberton.h"
+#include "sort.h"
 
 /**
  * heap_sort - function description
@@ -7,5 +7,10 @@
  */
 void heap_sort(int *array, size_t size)
 {
+    int *x = array;
+    size_t s = size;
 
+    x++;
+    s++;
+    return;
 }
