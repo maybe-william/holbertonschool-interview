@@ -11,6 +11,7 @@ def count_words(subreddit, word_list):
     word_list = list(map(lambda x: x.lower(), word_list))
     matches = {}
     query_api(subreddit, matches, word_list)
+    items = sorted(matches.items(), key=lambda x: x[0])
     items = sorted(matches.items(), key=lambda x: x[1])
     list(map(lambda x: print(str(x[0]) + ': ' + str(x[1])), reversed(items)))
 
