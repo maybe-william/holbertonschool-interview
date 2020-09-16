@@ -12,11 +12,11 @@ def count_words(subreddit, word_list):
     matches = {}
     query_api(subreddit, matches, word_list)
     items = sorted(matches.items(), key=lambda x: x[1])
-    list(map(lambda x: print('{}: {}'.format(x[0], x[1])), reversed(items)))
+    list(map(lambda x: print(str(x[0]) + ': ' + str(x[1])), reversed(items)))
 
 
 def assign_map_val(to_assign, key, val):
-    """utility method for use below"""
+    """utility method to be used below"""
     to_assign[key] = val
 
 
