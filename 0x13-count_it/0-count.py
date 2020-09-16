@@ -8,11 +8,11 @@ import requests
 
 def count_words(subreddit, word_list):
     """Count all the keywords from the titles of a given subreddit"""
-    word_list = [x.lower() for x in word_list]
+    word_list = list(map(lambda x: x.lower(), word_list))
     matches = {}
     query_api(subreddit, matches, word_list)
     items = sorted(matches.items(), key=lambda x: x[1])
-    [print('{}: {}'.format(x[0], x[1])) for x in reversed(items)]
+    list(map(lambda x: print('{}: {}'.format(x[0], x[1])), reversed(items)))
 
 
 def assign_map_val(to_assign, key, val):
@@ -25,9 +25,12 @@ def add_matches(title, matches, word_list):
     title = ' ' + title.lower() + ' '
     x = '(?<=\\s)'
     y = '(?=\\s)'
-    words = [re.findall(re.compile(x + word + y), title) for word in word_list]
-    pairs = [(z[0], len(z)) for z in words if len(z) > 0]
-    [assign_map_val(matches, a[0], matches.get(a[0], 0) + a[1]) for a in pairs]
+    find_words = (lambda word: re.findall(re.compile(x + word + y), title))
+    words = list(map(find_words, word_list))
+    at_least_one = list(filter(lambda z: len(z) > 0, words))
+    pairs = list(map(lambda a: (a[0], len(a)), at_least_one))
+    ad = (lambda b: assign_map_val(matches, b[0], matches.get(b[0], 0) + b[1]))
+    list(map(ad, pairs))
 
 
 def query_api(subreddit, matches, word_list, after=None):
@@ -45,8 +48,8 @@ def query_api(subreddit, matches, word_list, after=None):
     if posts == []:
         return
 
-    temp = [x.get("data", {}).get("title", "") for x in posts]
-    [add_matches(y, matches, word_list) for y in temp]
+    temp = list(map(lambda x: x.get("data", {}).get("title", ""), posts))
+    list(map(lambda y: add_matches(y, matches, word_list), temp))
 
     next_page = data.get("after", None)
     if next_page is None:
