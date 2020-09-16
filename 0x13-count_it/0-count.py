@@ -2,8 +2,8 @@
 """Return the count of keywords in hot post titles on reddit"""
 
 
-import requests
 import re
+import requests
 
 
 def count_words(subreddit, word_list):
