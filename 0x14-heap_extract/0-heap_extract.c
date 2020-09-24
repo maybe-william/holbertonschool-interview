@@ -7,6 +7,8 @@
  */
 void swap_nodes(heap_t *node1, heap_t *node2)
 {
+	if (node1 == node2)
+		return;
 	node1->n = (node1->n) ^ (node2->n);
 	node2->n = (node1->n) ^ (node2->n);
 	node1->n = (node1->n) ^ (node2->n);
@@ -64,9 +66,9 @@ heap_t *find_last_node(heap_t *root, int level, int max_height)
 }
 
 /**
- * heap_extract - function description
- * @root: parameter description
- * Return: return description
+ * heap_extract - extract a number from a heap and re heapify
+ * @root: the root of the heap
+ * Return: the value extracted
  */
 int heap_extract(heap_t **root)
 {
@@ -80,6 +82,12 @@ int heap_extract(heap_t **root)
 		return (0);
 	val = (*root)->n;
 	temp = find_last_node(*root, 0, get_height(*root, 0));
+	if (temp == *root)
+	{
+		free(temp);
+		*root = NULL;
+		return (val);
+	}
 	swap_nodes(*root, temp);
 	if (temp->parent->left == temp)
 		temp->parent->left = NULL;
@@ -91,23 +99,16 @@ int heap_extract(heap_t **root)
 	{
 		left = temp->left;
 		right = temp->right;
-
 		contender = left;
-		if (left && right)
-		{
-			if (left->n < right->n)
-				contender = right;
-		}
+		if (left && right && (left->n < right->n))
+			contender = right;
 		if (!left && !right)
 			break;
 		if (contender->n > temp->n)
-		{
 			swap_nodes(temp, contender);
-			temp = contender;
-		} else
-		{
+		else
 			break;
-		}
+		temp = contender;
 	}
 	return (val);
 }
