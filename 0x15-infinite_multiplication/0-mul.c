@@ -227,6 +227,12 @@ int validate(char *one, char *two)
 {
 	int i = 0;
 
+	if (zero(one) || zero(two))
+	{
+		_putchar('0');
+		_putchar('\n');
+		exit(0);
+	}
 	for (; one[i]; i++)
 		if (!acceptable(one[i]))
 			return (0);
