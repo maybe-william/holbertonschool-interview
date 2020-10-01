@@ -1,5 +1,4 @@
 #include "holberton.h"
-#include <stdio.h>
 #include <stdlib.h>
 
 /**
@@ -252,8 +251,8 @@ int main(int argc, char *argv[])
 	if (argc != 3 || !validate(argv[1], argv[2]))
 	{
 		for (; err[i]; i++)
-			putchar(err[i]);
-		putchar('\n');
+			_putchar(err[i]);
+		_putchar('\n');
 		exit(98);
 	}
 	one = argv[1];
@@ -279,6 +278,6 @@ int main(int argc, char *argv[])
 	res = russian(l, s, len);
 	res = squeegee(res);
 	for (k = 0; res[k]; k++)
-		putchar(res[k]);
-	putchar('\n');
+		_putchar(res[k]);
+	_putchar('\n');
 }
