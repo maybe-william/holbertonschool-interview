@@ -21,6 +21,6 @@ int acceptable(char c);
 
 int validate(char *one, char *two);
 
-int _putchar(char);
+int _putchar(char c);
 
 #endif

@@ -266,7 +266,6 @@ int main(int argc, char *argv[])
 		res = one;
 		one = two;
 		two = res;
-		res = NULL;
 	}
 	l = get_space(len);
 	tmp = l;
@@ -284,4 +283,5 @@ int main(int argc, char *argv[])
 	free(l);
 	free(s);
 	free(res);
+	return (0);
 }
