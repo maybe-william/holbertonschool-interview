@@ -171,6 +171,7 @@ char *russian(char *larger, char *smaller, int len)
 {
 	char *acc;
 	int odd;
+	char *tmp;
 
 
 	acc = get_space(len);
@@ -181,7 +182,11 @@ char *russian(char *larger, char *smaller, int len)
 	{
 		odd = half(smaller);
 		if (odd == 1)
+		{
+			tmp = acc;
 			acc = add(acc, larger);
+			free(tmp);
+		}
 		twice(larger);
 	}
 	return (acc);
@@ -240,13 +245,8 @@ int validate(char *one, char *two)
  */
 int main(int argc, char *argv[])
 {
-	char *one;
-	char *two;
-	char *err = "Error";
-	char *l;
-	char *s;
+	char *one, *two, *l, *s, *res, *tmp, *err = "Error";
 	int i = 0, j = 0, k = 0, len = 0;
-	char *res;
 
 	if (argc != 3 || !validate(argv[1], argv[2]))
 	{
@@ -259,10 +259,8 @@ int main(int argc, char *argv[])
 	two = argv[2];
 	while (one[i])
 		i++;
-
 	while (two[j])
 		j++;
-
 	len = i + j + 2;
 	if (j > i)
 	{
@@ -272,12 +270,19 @@ int main(int argc, char *argv[])
 		res = NULL;
 	}
 	l = get_space(len);
+	tmp = l;
 	l = add(l, one);
+	free(tmp);
 	s = get_space(len);
+	tmp = s;
 	s = add(s, two);
+	free(tmp);
 	res = russian(l, s, len);
 	res = squeegee(res);
 	for (k = 0; res[k]; k++)
 		_putchar(res[k]);
 	_putchar('\n');
+	free(l);
+	free(s);
+	free(res);
 }
