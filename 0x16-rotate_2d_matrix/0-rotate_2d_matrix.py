@@ -9,7 +9,7 @@ def swap(matrix, a, b):
     matrix[a[0]][a[1]] = matrix[a[0]][a[1]] ^ matrix[b[0]][b[1]]
 
 
-def rotate_2d_m(matrix):
+def rotate_2d_matrix(matrix):
     """flip diagonally, then flip horizontally for a clockwise rotation"""
     size = len(matrix)
 
