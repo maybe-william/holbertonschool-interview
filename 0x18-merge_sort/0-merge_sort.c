@@ -6,20 +6,21 @@
  * @array: the array to print
  * @size: the size of the array to print
  */
-void my_print_array(char* prefix, int *array, size_t size)
+void my_print_array(char *prefix, int *array, size_t size)
 {
-    size_t i = 0;
+	size_t i = 0;
 
-    printf("%s", prefix);
-    for(i = 0; i < size; i++)
-    {
-        printf("%i", array[i]);
-        if (i == size - 1) {
-            printf("\n");
-            return;
-        }
-        printf(", ");
-    }
+	printf("%s", prefix);
+	for (i = 0; i < size; i++)
+	{
+		printf("%i", array[i]);
+		if (i == size - 1)
+		{
+			printf("\n");
+			return;
+		}
+		printf(", ");
+	}
 }
 
 /**
@@ -29,10 +30,10 @@ void my_print_array(char* prefix, int *array, size_t size)
  */
 void swap(int *a, int *b)
 {
-    int x = *a;
+	int x = *a;
 
-    *a = *b;
-    *b = x;
+	*a = *b;
+	*b = x;
 }
 
 /**
@@ -43,37 +44,41 @@ void swap(int *a, int *b)
  */
 void merge_sort_rec(int *array, size_t size, int *buff)
 {
-    size_t mid = size / 2;
-    size_t i = 0;
-    size_t j = mid;
-    size_t k = 0;
+	size_t mid = size / 2;
+	size_t i = 0;
+	size_t j = mid;
+	size_t k = 0;
 
-    if (size <= 1 || array == NULL) {
-        return;
-    }
-    merge_sort_rec(array, mid, buff);
-    merge_sort_rec(array + mid, size - mid, buff);
-    printf("Merging...\n");
-    my_print_array("[left]: ", array, mid);
-    my_print_array("[right]: ", array + mid, size - mid);
-    while(i < mid && j < size)
-    {
-      if (array[i] < array[j]) {
-        buff[k] = array[i];
-        i++;
-      } else {
-        buff[k] = array[j];
-        j++;
-      }
-      k++;
-    }
-    for ( ; i < mid; i++, k++)
-        buff[k] = array[i];
-    for ( ; j < size; j++, k++)
-        buff[k] = array[j];
-    for (k = 0; k < size; k++)
-        array[k] = buff[k];
-    my_print_array("[Done]: ", array, size);
+	if (size <= 1 || array == NULL)
+	{
+		return;
+	}
+	merge_sort_rec(array, mid, buff);
+	merge_sort_rec(array + mid, size - mid, buff);
+	printf("Merging...\n");
+	my_print_array("[left]: ", array, mid);
+	my_print_array("[right]: ", array + mid, size - mid);
+	while (i < mid && j < size)
+	{
+		if (array[i] < array[j])
+		{
+			buff[k] = array[i];
+			i++;
+		}
+		else
+		{
+			buff[k] = array[j];
+			j++;
+		}
+		k++;
+	}
+	for ( ; i < mid; i++, k++)
+		buff[k] = array[i];
+	for ( ; j < size; j++, k++)
+		buff[k] = array[j];
+	for (k = 0; k < size; k++)
+		array[k] = buff[k];
+	my_print_array("[Done]: ", array, size);
 }
 
 /**
@@ -83,13 +88,13 @@ void merge_sort_rec(int *array, size_t size, int *buff)
  */
 void merge_sort(int *array, size_t size)
 {
-    int *buff = NULL;
+	int *buff = NULL;
 
-    if (array == NULL || size == 0)
-      return;
-    buff = malloc(size * sizeof(int));
-    if (buff == NULL)
-        return;
-    merge_sort_rec(array, size, buff);
-    free(buff);
+	if (array == NULL || size == 0)
+		return;
+	buff = malloc(size * sizeof(int));
+	if (buff == NULL)
+		return;
+	merge_sort_rec(array, size, buff);
+	free(buff);
 }
