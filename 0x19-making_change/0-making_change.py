@@ -4,6 +4,9 @@
 
 def makeChange(coins, total):
     """Tell the number of coins required for a sum"""
+    if total <= 0 or len(coins) <= 0:
+        return -1
+
     sc = sorted(coins)
     sc = sc[::-1]
 
