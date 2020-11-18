@@ -18,10 +18,12 @@ List *add_node_begin(List **list, char *str)
 	if (node == NULL)
 		return (NULL);
 
-	if (str == NULL)
-		node->str = NULL;
-	else
-		node->str = strdup((const char *) str);
+	node->str = strdup((const char *) str);
+	if (node->str == NULL)
+	{
+		free(node);
+		return (NULL);
+	}
 
 	head = *list;
 	if (head == NULL)
@@ -66,10 +68,12 @@ List *add_node_end(List **list, char *str)
 	if (node == NULL)
 		return (NULL);
 
-	if (str == NULL)
-		node->str = NULL;
-	else
-		node->str = strdup((const char *) str);
+	node->str = strdup((const char *) str);
+	if (node->str == NULL)
+	{
+		free(node);
+		return (NULL);
+	}
 
 	head = *list;
 	if (head == NULL)
