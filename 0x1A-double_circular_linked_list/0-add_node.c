@@ -33,15 +33,6 @@ List *add_node_begin(List **list, char *str)
 		*list = node;
 		return (node);
 	}
-	if (head->next == NULL && head->prev == NULL)
-	{
-		head->next = node;
-		head->prev = node;
-		node->next = head;
-		node->prev = head;
-		*list = node;
-		return (node);
-	}
 	head->prev->next = node;
 	node->prev = head->prev;
 	node->next = head;
@@ -81,14 +72,6 @@ List *add_node_end(List **list, char *str)
 		node->next = node;
 		node->prev = node;
 		*list = node;
-		return (node);
-	}
-	if (head->next == NULL && head->prev == NULL)
-	{
-		head->next = node;
-		head->prev = node;
-		node->next = head;
-		node->prev = head;
 		return (node);
 	}
 	head->prev->next = node;
