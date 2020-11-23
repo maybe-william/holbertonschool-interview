@@ -2,9 +2,9 @@
 
 
 /**
- * check_sorted - function description
- * @array: parameter description
- * @size: parameter description
+ * check_sorted - Check if an array is sorted
+ * @array: The array
+ * @size: The size of the array
  * Return: 1 if sorted, 0 otherwise
  */
 int check_sorted(int *array, size_t size)
@@ -22,10 +22,10 @@ int check_sorted(int *array, size_t size)
 }
 
 /**
- * radix_helper - function description
- * @array: parameter description
- * @size: parameter description
- * @digit: the digit to sort
+ * radix_helper - A recursive helper function to do radix sort
+ * @array: The array to sort
+ * @size: The size of the array to sort
+ * @digit: the current digit to sort by
  */
 void radix_helper(int *array, size_t size, size_t digit)
 {
@@ -71,12 +71,14 @@ void radix_helper(int *array, size_t size, size_t digit)
 
 
 /**
- * radix_sort - function description
- * @array: parameter description
- * @size: parameter description
+ * radix_sort - Sort by each digit in turn
+ * @array: The array to sort
+ * @size: The size of the array to sort
  */
 void radix_sort(int *array, size_t size)
 {
+	if (array == NULL)
+		return;
 	if (size < 2)
 		return;
 	radix_helper(array, size, 10);
