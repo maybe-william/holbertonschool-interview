@@ -2,26 +2,6 @@
 
 
 /**
- * check_sorted - Check if an array is sorted
- * @array: The array
- * @size: The size of the array
- * Return: 1 if sorted, 0 otherwise
- */
-int check_sorted(int *array, size_t size)
-{
-	size_t i = 0, sorted = 0;
-
-	sorted = 1;
-	for (i = 1; i < size; i++)
-		if (array[i] < array[i - 1])
-			sorted = 0;
-
-	if (sorted == 1)
-		return (1);
-	return (0);
-}
-
-/**
  * radix_helper - A recursive helper function to do radix sort
  * @array: The array to sort
  * @size: The size of the array to sort
