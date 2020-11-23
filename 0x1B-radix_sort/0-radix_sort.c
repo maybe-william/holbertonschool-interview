@@ -80,6 +80,9 @@ void radix_sort(int *array, size_t size)
 	if (array == NULL)
 		return;
 	if (size < 2)
+	{
+		print_array(array, size);
 		return;
+	}
 	radix_helper(array, size, 10);
 }
