@@ -42,6 +42,8 @@ void radix_helper(int *array, size_t size, size_t digit)
 		tmp = tmp / (digit / 10);
 		digits[tmp] = digits[tmp] + 1;
 	}
+	if (digits[0] == size)
+		return;
 	for (i = 0; i < 10; i++)
 		radices[i] = malloc(digits[i] * sizeof(int));
 	for (i = 0; i < 10; i++)
@@ -64,8 +66,6 @@ void radix_helper(int *array, size_t size, size_t digit)
 	print_array((const int *)array, size);
 	for (i = 0; i < 10; i++)
 		free(radices[i]);
-	if (check_sorted(array, size) == 1)
-		return;
 	radix_helper(array, size, digit * 10);
 }
 
