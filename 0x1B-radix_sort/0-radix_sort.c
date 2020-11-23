@@ -34,8 +34,6 @@ void radix_helper(int *array, size_t size, size_t digit)
 	int *radices[10];
 	int tmp, count;
 
-	if (check_sorted(array, size) == 1)
-		return;
 	for (i = 0; i < 10; i++)
 		digits[i] = 0;
 	for (i = 0; i < size; i++)
@@ -66,6 +64,8 @@ void radix_helper(int *array, size_t size, size_t digit)
 	print_array((const int *)array, size);
 	for (i = 0; i < 10; i++)
 		free(radices[i]);
+	if (check_sorted(array, size) == 1)
+		return;
 	radix_helper(array, size, digit * 10);
 }
 
@@ -80,9 +80,6 @@ void radix_sort(int *array, size_t size)
 	if (array == NULL)
 		return;
 	if (size < 2)
-	{
-		print_array(array, size);
 		return;
-	}
 	radix_helper(array, size, 10);
 }
