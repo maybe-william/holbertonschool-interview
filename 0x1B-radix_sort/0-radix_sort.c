@@ -10,16 +10,13 @@
 void radix_helper(int *array, size_t size, size_t digit)
 {
 	size_t i = 0, j = 0;
-	size_t digits[10];
+	size_t digits[10] = {0};
 	int *radices[10];
 	int tmp, count;
 
-	for (i = 0; i < 10; i++)
-		digits[i] = 0;
 	for (i = 0; i < size; i++)
 	{
-		tmp = array[i] % digit;
-		tmp = tmp / (digit / 10);
+		tmp = (array[i] % digit) / (digit / 10);
 		digits[tmp] = digits[tmp] + 1;
 	}
 	if (digits[0] == size)
