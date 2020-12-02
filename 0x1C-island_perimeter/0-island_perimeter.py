@@ -56,7 +56,6 @@ def island_perimeter(grid):
         else:
             currentPoint = move(currentPoint, dirs[currentDirection])
             currentDirection = (currentDirection + 3) % 4
-        print(currentPoint, currentDirection)
         done = currentPoint == startPoint and currentDirection == startDir
 
     return perimeter
