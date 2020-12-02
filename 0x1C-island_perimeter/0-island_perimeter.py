@@ -23,6 +23,9 @@ def island_perimeter(grid):
         """Return a new point moved in a direction"""
         return (point[0] + direction[0], point[1] + direction[1])
 
+    if len(grid) == 0 or len(grid[0]) == 0:
+        return 0
+
     t = (1, 0)
     r = (0, 1)
     b = (-1, 0)
@@ -43,6 +46,9 @@ def island_perimeter(grid):
                             startDir = z
                             foundStart = True
                             break
+
+    if startPoint == -1:
+        return 0
 
     currentPoint = startPoint
     currentDirection = startDir
