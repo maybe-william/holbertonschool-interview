@@ -22,7 +22,7 @@ int check_avl(binary_tree_t *node, int *last, int *max, int *min, int depth)
 		*max = depth;
 
 	if (!(node->left && node->right))
-		if (*min == -1 || depth < *min)
+		if (*min == -2147483648 || depth < *min)
 			*min = depth;
 
 	if (*max - *min > 1)
@@ -47,9 +47,9 @@ int check_avl(binary_tree_t *node, int *last, int *max, int *min, int depth)
  */
 int binary_tree_is_avl(const binary_tree_t *tree)
 {
-	int last = -1;
-	int max = -1;
-	int min = -1;
+	int last = -2147483648;
+	int max = -2147483648;
+	int min = -2147483648;
 
 	if (!tree)
 		return (0);
