@@ -28,7 +28,7 @@ int check_avl(binary_tree_t *node, int *last, int *max, int *min, int depth)
 	if (*max - *min > 1)
 		return (0);
 
-	if (*last > node->n)
+	if (*last >= node->n)
 		return (0);
 
 	*last = node->n;
