@@ -1,0 +1,10 @@
+#ifndef _HOLBERTON_H_
+#define _HOLBERTON_H_
+
+#include <stdlib.h>
+
+int _putchar(char);
+
+int *find_substring(char const *s, char const **words, int nb_words, int *n);
+
+#endif
